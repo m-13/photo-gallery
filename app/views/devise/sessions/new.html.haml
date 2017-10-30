@@ -3,9 +3,5 @@
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.email_field :email, :autofocus => true
     = f.password_field :password
-    - if devise_mapping.rememberable?
-      %label.checkbox
-        = f.label :remember_me
-        Rembmer me
-    = f.submit "Sign in"
+    = f.submit "Sign in", class: 'btn btn-primary'
   = render "devise/shared/links"
