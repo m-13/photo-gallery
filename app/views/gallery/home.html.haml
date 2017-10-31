@@ -1,4 +1,27 @@
-%h1 Gallery
+
+.container
+  .row
+    %h1.my-4.text-center.text-lg-left Gallery
+  .row.text-center.text-lg-left
+    - @photos.each do |photo|
+      .col-lg-3.col-md-4.col-xs-6
+        = link_to '#', class: 'd-block mb-4 h100', data: { toggle: 'modal', target: '#imageModal', src: photo.image.url, name: photo.image.filename, id: photo.id } do 
+          = image_tag photo.image.thumb.url, alt: photo.image.filename, class: 'img-fluid img-thumbnail'
+  .row
+    = bootstrap_form_for :photo, layout: :horizontal, url: upload_path do |f|
+      = f.file_field :image, hide_label: true, class: 'btn btn-secondary btn-file'
+      = f.submit 'Upload Photo', class: 'btn btn-primary'
 
 
-  
+  #imageModal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h3#modalTitle
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        = image_tag '', id: 'imageModal-photo' 
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        = link_to 'Delete', delete_photo_path(0), class: 'btn btn-danger', id: 'delete' 

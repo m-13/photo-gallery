@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap'
 
+gem 'bootstrap_form'
+
+gem 'hermitage'
+
 gem 'jquery-rails'
 
 gem 'carrierwave'
